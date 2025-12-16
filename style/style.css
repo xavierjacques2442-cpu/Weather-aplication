@@ -4,7 +4,8 @@
   margin: 16px auto;
   border-radius: 32px;
   background-color: #7504ff7e;
-  width: 1020px;
+  width: 1148px;
+  height: 86px;
 }
 
 .big-panel {
@@ -13,17 +14,13 @@
   margin: 80px auto;       
   border-radius: 32px;
   background-color: #7504ff7e;
-  width: 1020px;            
-  height: 300px;            
+  width: 1148px;            
+  height: 813px;            
 }
-
-
-
 
 .text{
     color: rgb(255, 255, 255);
     font-family: 'Times New Roman', Times, serif;
-    
 }
 
 
