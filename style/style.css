@@ -1,0 +1,30 @@
+.panel {
+  border: 1px solid #7504ff7e ;
+  padding: 16px;
+  margin: 16px auto;
+  border-radius: 32px;
+  background-color: #7504ff7e;
+  width: 1020px;
+}
+
+.big-panel {
+  border: 1px solid #7504ff7e;
+  padding: 24px;
+  margin: 80px auto;       
+  border-radius: 32px;
+  background-color: #7504ff7e;
+  width: 1020px;            
+  height: 300px;            
+}
+
+
+
+
+.text{
+    color: rgb(255, 255, 255);
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+
+
+
