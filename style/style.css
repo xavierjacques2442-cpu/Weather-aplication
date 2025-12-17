@@ -1,27 +1,135 @@
 .panel {
-  border: 1px solid #7504ff7e ;
+  border: 1px solid #7504ff7e;
   padding: 16px;
   margin: 16px auto;
   border-radius: 32px;
   background-color: #7504ff7e;
   width: 1148px;
   height: 86px;
+position: relative;
 }
 
 .big-panel {
   border: 1px solid #7504ff7e;
   padding: 24px;
-  margin: 80px auto;       
+  margin: 16px auto;        
   border-radius: 32px;
   background-color: #7504ff7e;
-  width: 1148px;            
-  height: 813px;            
+  width: 1148px;
+  height: 813px;
+  display: flex;
+  justify-content: center;   
 }
 
-.text{
-    color: rgb(255, 255, 255);
-    font-family: 'Times New Roman', Times, serif;
+.panel-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;  
+  width: 1000px;             
 }
 
+.top-panels {
+  display: flex;
+  gap: 12px;
+}
+
+.lil-panel {
+  flex: 0 0 523px;
+  height: 303px;
+  border: 1px solid #7504ff7e;
+  border-radius: 32px;
+  background-color: #7504ff7e;
+  box-sizing: border-box;
+}
+
+.lil-pan {
+  flex: 0 0 477px;
+  height: 303px;
+  border: 1px solid #7504ff7e;
+  border-radius: 32px;
+  background-color: #7504ff7e;
+  box-sizing: border-box;
+}
+
+.bottom-panel {
+  width: 1012px;
+  height: 303px;
+  margin-top: 16px;
+  border: 1px solid #7504ff7e;
+  border-radius: 32px;
+  background-color: #7504ff7e;
+  box-sizing: border-box;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.search-panel {
+    width: 900px;
+    height: 81px;
+    border-radius: 40px;
+    background-color: white;
+    border: 1px solid rgb(255,255,255);
+    padding: 0 16px;
+
+    display: flex;           
+    align-items: center;      
+    justify-content: space-between; 
+    gap: 12px;              
+}
+
+.search-panel input {
+    flex: 1;                 
+    height: 48px;
+    border-radius: 24px;
+    border: 1px solid #ccc;
+    padding: 0 16px;
+    font-size: 16px;
+}
+.search-star {
+  width: 71px;
+  height: 71px;
+  cursor: pointer;
+}
+
+.search-icon-left {
+    width: 48px;             
+    height: 48px;
+    cursor: default;
+}
+
+.body{
+    background-image:url(../image/c4f64a46985216086885669682b17bddf61ba8de.jpg);
+     background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.text {
+     color: #fff; 
+     font-family: 'Times New Roman', Times, serif; 
+    }
+    
+.panel-slider-box {
+  position: absolute;
+  top: 8px;
+  left: 900px;
+
+  width: 177.9px;
+  height: 68.26px;
+  border-radius: 70px;
+
+  background-color: #7504ff7e;
+  border: 1px solid #7504ff7e;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;              
+  padding: 0 12px;        
+}
 
 
