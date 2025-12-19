@@ -8,9 +8,11 @@ const forecastEl = document.getElementById("forecast");
 const searchInputEl = document.getElementById("search-input");
 const slider = document.querySelector(".panel-slider");
 const starEl = document.querySelector(".search-star");
+const weatherTextEl = document.getElementById("weather-text");
+
 
 // ===== API KEY =====
-const API_KEY = "f225bdb454a834269a58158a86ba27ce";
+//Put key here
 
 // ===== CLOCK =====
 function updateClock() {
@@ -55,10 +57,14 @@ async function getCurrentWeather(lat, lon) {
   locationEl.textContent = `${data.name}, ${data.sys.country}`;
   tempEl.textContent = `${Math.round(data.main.temp)}°`;
   hiLoEl.textContent = `H: ${Math.round(data.main.temp_max)}° | L: ${Math.round(data.main.temp_min)}°`;
+
+  // ✅ Update weather icon and text
   weatherIconEl.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+  weatherTextEl.textContent = data.weather[0].main;
 
   updateStar(data.name);
 }
+
 
 // ===== FORECAST =====
 async function getForecast(lat, lon) {
@@ -174,3 +180,6 @@ function removeFavorite(city) {
 // ===== DEFAULT CITY =====
 getCurrentWeather(37.9577, -121.2908);
 getForecast(37.9577, -121.2908);
+
+
+
