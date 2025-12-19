@@ -31,102 +31,86 @@ setInterval(updateClock, 60000);
 
 // ===== FAVORITES =====
 let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+// REMOVE STOCKTON ON LOAD
+favorites = favorites.filter(city => city !== "Stockton");
+localStorage.setItem("favorites", JSON.stringify(favorites));
+
 renderFavorites();
 
-// ===== HELPER: UPDATE STAR ICON =====
+// ===== UPDATE STAR =====
 function updateStar(cityName) {
-  const starFilled = "./image/star-yellow.png";
-  const starOutline = "./image/star.png";
-  starEl.src = favorites.includes(cityName) ? starFilled : starOutline;
+  starEl.src = favorites.includes(cityName)
+    ? "./image/star-yellow.png"
+    : "./image/star.png";
 }
 
 // ===== CURRENT WEATHER =====
 async function getCurrentWeather(lat, lon) {
-  try {
-    const res = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`
-    );
-    if (!res.ok) throw new Error("Weather error");
-    const data = await res.json();
+  const res = await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`
+  );
+  const data = await res.json();
 
-    locationEl.textContent = `${data.name}, ${data.sys.country}`;
-    tempEl.textContent = `${Math.round(data.main.temp)}°`;
-    hiLoEl.textContent = `H: ${Math.round(data.main.temp_max)}° | L: ${Math.round(data.main.temp_min)}°`;
-    weatherIconEl.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+  locationEl.textContent = `${data.name}, ${data.sys.country}`;
+  tempEl.textContent = `${Math.round(data.main.temp)}°`;
+  hiLoEl.textContent = `H: ${Math.round(data.main.temp_max)}° | L: ${Math.round(data.main.temp_min)}°`;
+  weatherIconEl.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
 
-    // Update star
-    updateStar(data.name);
-
-  } catch (err) {
-    locationEl.textContent = "Weather unavailable";
-    tempEl.textContent = "--°";
-    hiLoEl.textContent = "";
-    console.error(err);
-  }
+  updateStar(data.name);
 }
 
-// ===== FIVE DAY FORECAST (CLICKABLE) =====
+// ===== FORECAST =====
 async function getForecast(lat, lon) {
-  try {
-    const res = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`
-    );
-    if (!res.ok) throw new Error("Forecast error");
-    const data = await res.json();
-    forecastEl.innerHTML = "";
+  const res = await fetch(
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`
+  );
+  const data = await res.json();
+  forecastEl.innerHTML = "";
 
-    const daily = {};
-    data.list.forEach(item => {
-      const day = item.dt_txt.split(" ")[0];
-      if (!daily[day]) daily[day] = [];
-      daily[day].push(item);
-    });
+  const daily = {};
+  data.list.forEach(item => {
+    const day = item.dt_txt.split(" ")[0];
+    if (!daily[day]) daily[day] = [];
+    daily[day].push(item);
+  });
 
-    // Weekday labels
-    const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const weekdays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
-    Object.keys(daily).slice(0, 5).forEach(day => {
-      const temps = daily[day].map(i => i.main.temp);
-      const icon = daily[day][0].weather[0].icon;
-      const d = new Date(day);
-      const weekday = weekdays[d.getDay()];
+  Object.keys(daily).slice(0,5).forEach(day => {
+    const temps = daily[day].map(i => i.main.temp);
+    const icon = daily[day][0].weather[0].icon;
+    const weekday = weekdays[new Date(day).getDay()];
 
-      forecastEl.innerHTML += `
-        <div class="forecast-day" 
-             onclick="setDayWeather('${icon}', ${Math.round(Math.max(...temps))}, ${Math.round(Math.min(...temps))})">
-          <div class="forecast-date">${weekday}</div>
-          <img src="https://openweathermap.org/img/wn/${icon}@2x.png">
-          <div class="forecast-temp">${Math.round(Math.max(...temps))}° | ${Math.round(Math.min(...temps))}°</div>
+    forecastEl.innerHTML += `
+      <div class="forecast-day"
+           onclick="setDayWeather('${icon}', ${Math.max(...temps)}, ${Math.min(...temps)})">
+        <div class="forecast-date">${weekday}</div>
+        <img src="https://openweathermap.org/img/wn/${icon}@2x.png">
+        <div class="forecast-temp">
+          ${Math.round(Math.max(...temps))}° | ${Math.round(Math.min(...temps))}°
         </div>
-      `;
-    });
-
-  } catch (err) {
-    forecastEl.innerHTML = "<p>Forecast unavailable</p>";
-    console.error(err);
-  }
+      </div>
+    `;
+  });
 }
 
-// ===== SWITCH MAIN WEATHER FROM FORECAST =====
+// ===== SWITCH DAY =====
 function setDayWeather(icon, high, low) {
   weatherIconEl.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
-  hiLoEl.textContent = `H: ${high}° | L: ${low}°`;
+  hiLoEl.textContent = `H: ${Math.round(high)}° | L: ${Math.round(low)}°`;
 }
 
 // ===== SEARCH =====
 async function searchCity(city) {
-  try {
-    const res = await fetch(
-      `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`
-    );
-    const data = await res.json();
-    if (!data[0]) return alert("City not found");
+  const res = await fetch(
+    `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`
+  );
+  const data = await res.json();
+  if (!data[0]) return;
 
-    getCurrentWeather(data[0].lat, data[0].lon);
-    getForecast(data[0].lat, data[0].lon);
-  } catch (err) {
-    console.error(err);
-  }
+  getCurrentWeather(data[0].lat, data[0].lon);
+  getForecast(data[0].lat, data[0].lon);
 }
 
 searchInputEl.addEventListener("keydown", e => {
@@ -141,24 +125,20 @@ slider.addEventListener("input", () => {
 // ===== STAR CLICK =====
 starEl.addEventListener("click", () => {
   const city = locationEl.textContent.split(",")[0];
-  if (!city || city === "--") return;
-
-  const starFilled = "./image/star-yellow.png";
-  const starOutline = "./image/star.png";
+  if (!city) return;
 
   if (favorites.includes(city)) {
     favorites = favorites.filter(c => c !== city);
-    starEl.src = starOutline;
   } else {
     favorites.push(city);
-    starEl.src = starFilled;
   }
 
   localStorage.setItem("favorites", JSON.stringify(favorites));
+  updateStar(city);
   renderFavorites();
 });
 
-// ===== RENDER FAVORITES IN lil-pan =====
+// ===== RENDER FAVORITES =====
 function renderFavorites() {
   const lilPan = document.querySelector(".lil-pan");
   let list = lilPan.querySelector(".favorites-list");
@@ -170,8 +150,25 @@ function renderFavorites() {
   }
 
   list.innerHTML = favorites.length
-    ? favorites.map(city => `<div class="fav-city" onclick="searchCity('${city}')">⭐ ${city}</div>`).join("")
+    ? favorites.map(city => `
+        <div class="fav-city">
+          <span onclick="searchCity('${city}')">${city}</span>
+          <img src="./image/star-yellow.png"
+               class="fav-star"
+               onclick="removeFavorite('${city}')">
+        </div>
+      `).join("")
     : "<div class='fav-city'>No favorites</div>";
+}
+
+function removeFavorite(city) {
+  favorites = favorites.filter(c => c !== city);
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+
+  if (locationEl.textContent.startsWith(city)) {
+    starEl.src = "./image/star.png";
+  }
+  renderFavorites();
 }
 
 // ===== DEFAULT CITY =====
