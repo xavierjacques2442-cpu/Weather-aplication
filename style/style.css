@@ -134,6 +134,8 @@ body {
   border-radius: 24px;
   border: none;
   padding: 0 16px;
+   background: rgba(255,255,255,0.35);
+   backdrop-filter: blur(12px);
 }
 
 .search-icon-left { width: 48px; }
@@ -292,48 +294,72 @@ body {
 .forecast-temp { font-size: 17px; opacity: 0.9; }
 
 /* ===== NIGHT MODE ===== */
-/* NIGHT MODE BODY */
 body.night-mode {
-  background-image: url('../image/cbb935cee4f473f0dfaf079bc05c16af958f4e7a\ \(1\).jpg'); /* Your night image */
+  background-image: url('../image/cbb935cee4f473f0dfaf079bc05c16af958f4e7a (1).jpg');
   background-size: cover;
   background-position: center;
+  color: rgba(255,255,255,0.9);
 }
 
-/* Panels */
+/* TOP PANEL */
 body.night-mode .panel {
-  background: linear-gradient(180deg, #303B61 0%, #121343 100%);
+  background: rgba(4, 4, 17, 0.65);
+  backdrop-filter: blur(14px);
 }
 
+/* SLIDER BOX */
+body.night-mode .panel-slider-box {
+  background: rgba(40, 40, 94, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+/* BIG PANEL */
 body.night-mode .big-panel {
-  background: linear-gradient(180deg, #303B61 0%, #121343 32.69%, #0A0924 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(48, 59, 97, 0.7) 0%,
+    rgba(18, 19, 67, 0.8) 32.69%,
+    rgba(10, 9, 36, 0.9) 100%
+  );
+  backdrop-filter: blur(18px);
 }
 
-body.night-mode .panel{
-  background: #040411;
+/* SMALL PANELS */
+body.night-mode .lil-panel,
+body.night-mode .lil-pan,
+body.night-mode .bottom-panel {
+  background: linear-gradient(
+    180deg,
+    rgba(48, 59, 97, 0.65) 0%,
+    rgba(18, 19, 67, 0.75) 100%
+  );
+  backdrop-filter: blur(14px);
 }
 
-body.night-mode .panel-slider-box{
-  background: #28285E;
-}
-
-body.night-mode .lil-panel{
-  background: linear-gradient(180deg, #303B61 0%, #121343 100%);
-}
-
-
-body.night-mode .lil-pan{
-  background: linear-gradient(180deg, #303B61 0%, #121343 100%);
-}
-
-body.night-mode .bottom-panel{
-  background: linear-gradient(180deg, #303B61 0%, #121343 100%);
-}
-
+/* MINI BOXES (HEADERS) */
 body.night-mode .mini-box {
-  background: #040411; /* solid dark color for mini-box */
-  color: #ffffff; /* keep text readable */
-
+  background: rgba(4, 4, 17, 0.75);
+  backdrop-filter: blur(16px);
+  color: rgba(255,255,255,0.95);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
+
+/* SEARCH PANEL (glass like Figma) */
+body.night-mode .search-panel {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(14px);
+}
+
+/* REMOVE SOLID WHITE INPUT */
+body.night-mode .search-panel input {
+  background: transparent; 
+  color: rgba(255,255,255,0.95);
+}
+
+body.night-mode .search-panel input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
 
 
 
