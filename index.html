@@ -4,73 +4,73 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Weather application</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-   <link rel="stylesheet" href="style/style.css">
-</head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+  </head>
+
   <body class="body">
- <div class="panel">
- <div class="panel-slider-box">
-  <img src="./image/0bf48a7d43caea74cbaa725f179b59a493873224.png" alt="left" class="slider-icon">
 
-  
-  <div class="slider-pill">
-    <input
-      type="range"
-      min="0"
-      max="100"
-      value="50"
-      class="panel-slider"
-    >
-  </div>
+    <div class="panel">
+      <div class="panel-slider-box">
+        <img src="./image/0bf48a7d43caea74cbaa725f179b59a493873224.png" alt="left" class="slider-icon">
 
-  <img src="./image/39961ebaa5ed70ab9de627f7d5a52c79c3a30086.png" alt="right" class="slider-icon">
-</div>
+        <div class="slider-pill">
+          <input type="range" min="0" max="100" value="50" class="panel-slider">
+        </div>
 
-
-
-  <h2 class="text-center text">Weather App</h2>
-</div>
-
-
-
-
-<div class="big-panel">
-  <div class="panel-content">
-    <div class="search-wrapper">
-      <div class="search-panel">
-        <img src="./image/7bb9e3a04124a8a2e25b5b45d898ed6840d667eb.png" alt="icon" class="search-icon-left">
-        <input type="text" placeholder="Search..." />
+        <img src="./image/39961ebaa5ed70ab9de627f7d5a52c79c3a30086.png" alt="right" class="slider-icon">
       </div>
-      <img src="./image/9f0b3d01638acb4cb099abe7a3191a56cf3f6fac.png" 
-           alt="star" class="search-star">
+
+      <h2 class="text-center text">Weather App</h2>
     </div>
 
-   <div class="top-panels">
-  <div class="lil-panel">
+    <div class="big-panel">
+      <div class="panel-content">
+
+        <div class="search-wrapper">
+          <div class="search-panel">
+            <img src="./image/7bb9e3a04124a8a2e25b5b45d898ed6840d667eb.png" alt="icon" class="search-icon-left">
+            <input type="text" placeholder="Search..." id="search-input">
+          </div>
+          <img src="./image/star.png" alt="star" class="search-star">
+        </div>
+
+        <div class="top-panels">
+         <div class="lil-panel">
   <div class="mini-box text">
-    <div class="top-line">12/xx/25 - 11:28am</div>
-    <div class="bottom-line">Tokyo, Japan</div>
+    <!-- DATE & TIME -->
+    <div class="top-line" id="date-time">--</div>
+
+    <!-- LOCATION -->
+    <div class="bottom-line" id="location">--</div>
+  </div>
+
+  <!-- WEATHER ROW: outside mini-box but still inside lil-panel -->
+  <div class="weather-row">
+    <img class="weather-icon" id="weather-icon" alt="">
+    <div class="temp" id="temp">--°</div>
+    <div class="hi-lo" id="hi-lo">H: --° L: --°</div>
   </div>
 </div>
 
 
-  <div class="lil-pan">
-    <div class="mini-box text">Favorites</div>
-  </div>
-</div>
 
-<div class="bottom-panel">
-  <div class="mini-box text">Five Day Forecast</div>
-</div>
+          <div class="lil-pan">
+            <div class="mini-box text">Favorites</div>
+          </div>
+        </div>
 
-  </div>
-</div>
+        <div class="bottom-panel">
+          <div class="mini-box text">Five Day Forecast</div>
 
+          <!-- FORECAST -->
+          <div class="forecast-grid" id="forecast"></div>
+        </div>
 
-
-
+      </div>
+    </div>
 
     <script src="app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
