@@ -6,7 +6,7 @@ body {
   background-image: url(../image/c4f64a46985216086885669682b17bddf61ba8de.jpg);
   background-size: cover;
   background-position: center;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'ABeeZee', sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -69,19 +69,19 @@ body {
 
 .panel-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  background: #ffdd00;
+  background: #ffffff;
   cursor: pointer;
-  margin-top: -7px;
+  margin-top: -2px;
 }
 
 .panel-slider::-moz-range-thumb {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #ffdd00;
+  background: #ffffff;
   cursor: pointer;
 }
 
@@ -292,15 +292,59 @@ body {
 .forecast-temp { font-size: 17px; opacity: 0.9; }
 
 /* ===== NIGHT MODE ===== */
+/* NIGHT MODE BODY */
 body.night-mode {
-  background-color: #0b132b;
-  background-image: none;
+  background-image: url('../image/cbb935cee4f473f0dfaf079bc05c16af958f4e7a\ \(1\).jpg'); /* Your night image */
+  background-size: cover;
+  background-position: center;
 }
 
-body.night-mode .panel,
-body.night-mode .big-panel,
-body.night-mode .mini-box {
-  background: rgba(20, 30, 60, 0.85);
+/* Panels */
+body.night-mode .panel {
+  background: linear-gradient(180deg, #303B61 0%, #121343 100%);
 }
+
+body.night-mode .big-panel {
+  background: linear-gradient(180deg, #303B61 0%, #121343 32.69%, #0A0924 100%);
+}
+
+body.night-mode .panel{
+  background: #040411;
+}
+
+body.night-mode .panel-slider-box{
+  background: #28285E;
+}
+
+body.night-mode .lil-panel{
+  background: linear-gradient(180deg, #303B61 0%, #121343 100%);
+}
+
+
+body.night-mode .lil-pan{
+  background: linear-gradient(180deg, #303B61 0%, #121343 100%);
+}
+
+body.night-mode .bottom-panel{
+  background: linear-gradient(180deg, #303B61 0%, #121343 100%);
+}
+
+body.night-mode .mini-box {
+  background: #040411; /* solid dark color for mini-box */
+  color: #ffffff; /* keep text readable */
+
+}
+
+
+
+.dosis-New {
+  font-family: "Dosis", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400px;
+  font-style: normal;
+}
+
+
+
 
 
