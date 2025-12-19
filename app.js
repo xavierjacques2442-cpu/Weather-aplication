@@ -12,7 +12,7 @@ const weatherTextEl = document.getElementById("weather-text");
 
 
 // ===== API KEY =====
-//Put key here
+//Put API KEY Here please
 
 // ===== CLOCK =====
 function updateClock() {
@@ -58,7 +58,7 @@ async function getCurrentWeather(lat, lon) {
   tempEl.textContent = `${Math.round(data.main.temp)}°`;
   hiLoEl.textContent = `H: ${Math.round(data.main.temp_max)}° | L: ${Math.round(data.main.temp_min)}°`;
 
-  // ✅ Update weather icon and text
+ 
   weatherIconEl.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
   weatherTextEl.textContent = data.weather[0].main;
 
